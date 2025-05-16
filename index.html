@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPay Receipt Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#14B957">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="input-section">
+            <h2>OPay Receipt Generator</h2>
+            <div class="input-group">
+                <label>Transaction Type:</label>
+                <select id="transactionType">
+                    <option value="transfer">Transfer</option>
+                    <option value="receive">Receive</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Amount (₦):</label>
+                <input type="number" id="amount" placeholder="Enter amount">
+            </div>
+            <div class="input-group">
+                <label>Sender Name:</label>
+                <input type="text" id="senderName" placeholder="Enter sender name">
+            </div>
+            <div class="input-group">
+                <label>Receiver Name:</label>
+                <input type="text" id="receiverName" placeholder="Enter receiver name">
+            </div>
+            <div class="input-group">
+                <label>Bank Name:</label>
+                <input type="text" id="bankName" placeholder="Enter bank name">
+            </div>
+            <div class="input-group">
+                <label>Account Number:</label>
+                <input type="text" id="accountNumber" placeholder="Enter account number">
+            </div>
+            <div class="input-group">
+                <label>Date:</label>
+                <input type="datetime-local" id="transactionDate">
+            </div>
+            <div class="input-group">
+                <label>Reference Number:</label>
+                <input type="text" id="referenceNumber" placeholder="Enter reference number">
+            </div>
+            <div class="button-group">
+                <button onclick="generateReceipt()">Generate Receipt</button>
+                <button onclick="downloadReceipt()">Download Receipt</button>
+            </div>
+        </div>
+
+        <div id="receipt" class="receipt">
+            <div class="receipt-header">
+                <svg class="opay-logo" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" fill="white"/>
+                    <path d="M 50 50 m -35 0 a 35 35 0 1 1 0 0.01" 
+                          stroke="#14B957" 
+                          stroke-width="10" 
+                          fill="none"
+                          transform="rotate(-135 50 50)"/>
+                    <rect x="12" y="45" width="15" height="10" fill="#000066"/>
+                </svg>
+                <div class="amount" id="receiptAmount">₦0.00</div>
+            </div>
+            <div class="receipt-details">
+                <div class="status-row">
+                    <svg class="checkmark" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" fill="#14B957"/>
+                        <path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" fill="none"/>
+                    </svg>
+                    <span class="status">Success</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Type:</span>
+                    <span class="value" id="receiptType">Transfer</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Sender:</span>
+                    <span class="value" id="receiptSender">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Receiver:</span>
+                    <span class="value" id="receiptReceiver">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Bank:</span>
+                    <span class="value" id="receiptBank">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Account No:</span>
+                    <span class="value masked" id="receiptAccount">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Date:</span>
+                    <span class="value" id="receiptDate">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Reference:</span>
+                    <span class="value" id="receiptReference">-</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
